@@ -18,11 +18,13 @@ $query = "
 ";
 
 $result = $conn->query($query);
-if ($result) {
+
+// Controlla se ci sono risultati
+if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "{$row['nome']} {$row['cognome']} - Corso: {$row['nome_corso']} ({$row['num_iscritti']} iscritti)<br>";
     }
 } else {
-    echo "Errore nella query: " . $conn->error;
+    echo "Nessun corso con almeno 5 iscritti trovato.";
 }
 ?>
